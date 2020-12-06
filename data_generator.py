@@ -21,3 +21,5 @@ def sphere(number):
             z = r * np.cos(v)
             csvfile.write(str(x) + "," + str(y) + "," + str(z) + "\n")
 
+linear(1000)
+
