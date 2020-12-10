@@ -28,7 +28,7 @@ class treeNode:
         return len(self.value)
 
     def split(self, dim: int, splitPoint: float):
-        sortedPoints = sorted(self.value, key=lambda p: p.value[dim])
+        sortedPoints = sorted(self.value, key=lambda p: p.value[dim].any())
         left = [x for x in sortedPoints if x.value[dim] <= splitPoint]
         right = [x for x in sortedPoints if x.value[dim] > splitPoint]
         self.value = None
@@ -59,7 +59,7 @@ class treeNode:
 
 
 def should_split_continue(tree: treeNode):
-    return tree.count() >= 5
+    return tree.count() >= 50
 
 
 def build_tree(tree: treeNode, d: int):
@@ -83,5 +83,6 @@ def find_best_dim_and_split_point(node: treeNode, d: int):
             tempBestDim = i
             tempSplitPoint = splitPoint
             tempMinBIC = minBIC
+
 
     return tempBestDim, tempSplitPoint

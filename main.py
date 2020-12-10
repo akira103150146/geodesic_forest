@@ -21,13 +21,12 @@ def create_n_trees(data: np.array, number: int):
     trees = []
 
     for i in range(number):
-        indexes, choosePoints = choose_n_points(data, 20)
+        indexes, choosePoints = choose_n_points(data, 200)
         root = tr.treeNode(create_point_array(choosePoints), indexes=indexes)
         tr.build_tree(root, 3)
         trees.append(root)
 
     return trees
-
 
 def get_point_appear_in_trees_count(trees, index):
     count = 0
@@ -75,12 +74,12 @@ def get_similarity_matrix(trees, indexes):
                             needToAdds[(element, index)] += 1
 
         for key in needToAdds:
-            print(key)
+            # print(key)
             mat[key] = needToAdds[key] / t
 
     np.savetxt('similarity_matrix.txt', mat, fmt='%.2f')
 
-with open('linear.csv', 'r', newline='') as csv:
+with open('helix.csv', 'r', newline='') as csv:
     np.set_printoptions(suppress=True)
     lines = csv.readlines()
     data = np.genfromtxt(lines, delimiter=',')
