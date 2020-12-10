@@ -38,6 +38,11 @@ def fast_bic(array):
     w1, w2 = n1/n, n2/n # proportion
     var_combine = (var1*n1 + var2*n2) / n
 
+    if var1 == 0 or 0.0:
+        var1 = np.Inf
+    if var2 == 0 or 0.0:
+        var2 = np.Inf  
+
     BIC_diff_var = diff_var(n1, n2, w1, w2, var1, var2)
     BIC_same_var = diff_var(n1, n2, w1, w2, var_combine, var_combine)
     BIC_curr = min(BIC_diff_var, BIC_same_var)
@@ -60,6 +65,11 @@ def fast_bic(array):
         n2, mean2, var2 = parameters(cluster2)
         w1, w2 = n1/n, n2/n
         var_combine = (var1*n1 + var2*n2) / n
+
+        if var1 == 0 or 0.0:
+            var1 = np.Inf
+        if var2 == 0 or 0.0:
+            var2 = np.Inf  
 
         BIC_diff_var = diff_var(n1, n2, w1, w2, var1, var2)
         BIC_same_var = diff_var(n1, n2, w1, w2, var_combine, var_combine)
