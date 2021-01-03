@@ -1,5 +1,6 @@
 import numpy as np
 import fast_bic as fb
+import math
 
 
 class point:
@@ -78,11 +79,14 @@ def find_best_dim_and_split_point(node: treeNode, d: int):
     tempMinBIC = np.Inf
 
     for i in range(d):
-        splitPoint, minBIC = fb.fast_bic(node.getColumnByDim(i))
+        # splitPoint, minBIC = fb.fast_bic(node.getColumnByDim(i))
+        splitPoint, minBIC = fb.Two_means(node.getColumnByDim(i))
+        if math.isnan(minBIC):
+            minBIC = 100000
+        
         if minBIC < tempMinBIC:
             tempBestDim = i
             tempSplitPoint = splitPoint
             tempMinBIC = minBIC
-
 
     return tempBestDim, tempSplitPoint

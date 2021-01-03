@@ -77,12 +77,12 @@ def get_similarity_matrix(trees, indexes):
             # print(key)
             mat[key] = needToAdds[key] / t
 
-    np.savetxt('similarity_matrix.txt', mat, fmt='%.2f')
+    np.savetxt('two_GM.txt', mat, fmt='%.2f')
 
-with open('helix.csv', 'r', newline='') as csv:
+with open('GM.csv', 'r', newline='') as csv:
     np.set_printoptions(suppress=True)
     lines = csv.readlines()
     data = np.genfromtxt(lines, delimiter=',')
-    trees = create_n_trees(data, 5)
+    trees = create_n_trees(data, 100)
     # [print(t.printTree()) for t in trees]
     get_similarity_matrix(trees, data[1:,0])
